@@ -53,6 +53,8 @@ function move(ctx, fn) {
     checkLeftCopy(ctx);
     checkDownCopy(ctx);
     checkUpCopy(ctx);
+
+    checkMoveToCopy(ctx);
 }
 
 function moveLogoToLeft(ctx) {
@@ -127,6 +129,32 @@ function checkUpCopy(ctx) {
             },
             false
         );
+    }
+}
+
+function checkMoveToCopy(ctx) {
+    const height = VERTICAL_LINE_HEIGHT + OFFSET_Y + HORIZONTAL_LINE_HEIGHT;
+    const width = VERTICAL_LINE_WIDTH * 2 + OFFSET_X * 2 + HORIZONTAL_LINE_WIDTH;
+
+    if (currentPointerPosition.y > CANVAS_HEIGHT) {
+        clear(ctx);
+        fillBackground(ctx);
+        printLogoWithTransalte(ctx, { x: 0, y: -CANVAS_HEIGHT });
+    }
+    if (currentPointerPosition.y < -height) {
+        clear(ctx);
+        fillBackground(ctx);
+        printLogoWithTransalte(ctx, { x: 0, y: CANVAS_HEIGHT });
+    }
+    if (currentPointerPosition.x > CANVAS_WIDTH) {
+        clear(ctx);
+        fillBackground(ctx);
+        printLogoWithTransalte(ctx, { x: -CANVAS_WIDTH, y: 0 });
+    }
+    if (currentPointerPosition.x < -width) {
+        clear(ctx);
+        fillBackground(ctx);
+        printLogoWithTransalte(ctx, { x: CANVAS_WIDTH, y: 0 });
     }
 }
 
